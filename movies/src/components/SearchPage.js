@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import Movie from './Movie'
+import './SearchPage.css'
 
 
 function SearchPage() {
@@ -78,23 +79,35 @@ function SearchPage() {
 
     return (
         <>
-            <form>
-                <label>
-                    Name:
-                    <input type="text" value = {name} onChange={e => setName(e.target.value)}/>
-                </label>
-                <label>
-                    Type:
-                    <input type="text" value = {type} onChange ={e => setType(e.target.value)}/>
-                </label>
-                <label>
-                    Year:
-                    <input type="text" value = {year} onChange = {e => setYear(e.target.value)}/> 
-                </label>
-            </form>
-            <button onClick ={() => search()}>Search</button>
-            {data?.map(movie => <Movie id = {movie.imdbID} key = {movie.imdbID} title = {movie.Title} poster = {movie.Poster} type = {movie.Type} year = {movie.Year} />)}
+            <div className = "box">
+                <form>
+                    <div className = "user-box">
+                    <label>
+                        Name:
+                    </label>
+                        <input type="text" value = {name} onChange={e => setName(e.target.value)}/>
+                    </div>
+                    <div className = "user-box">
+                    <label>
+                        Type:
+                    </label>
+                        <input type="text" value = {type} onChange ={e => setType(e.target.value)}/>
+                    </div>
+                    <div className = "user-box">
+                    <label>
+                        Year:
+                    </label>
+                        <input type="text" value = {year} onChange = {e => setYear(e.target.value)}/> 
+                    </div>
+   
+                </form>
+                <button onClick ={() => search()}>Search</button>
+            </div>
+            <div className = "movie-list">
 
+            {data?.map(movie => <Movie id = {movie.imdbID} key = {movie.imdbID} title = {movie.Title} poster = {movie.Poster} type = {movie.Type} year = {movie.Year} />)}
+                            
+            </div>
         </>
     )
 }

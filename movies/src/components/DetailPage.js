@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import {
     Link
 } from "react-router-dom";
+import './Movie.css'
 
 function DetailPage({match}) {
     const [title, setTitle] = useState("")
@@ -10,7 +11,7 @@ function DetailPage({match}) {
     const [type, setType] = useState("")
     const [released, setReleased] = useState("")
     const [genre, setGenre] = useState("")
-    const [rating, setRating] = useState("")
+    const [rating, setRating] = useState([])
 
 
     const saveData = (d) =>{
@@ -20,7 +21,7 @@ function DetailPage({match}) {
         setType(d.Type)
         setReleased(d.Released)
         setGenre(d.Genre)
-        setRating(d.Rating)
+        setRating(d.Ratings)
     }
 
     useEffect(() => {
@@ -30,18 +31,19 @@ function DetailPage({match}) {
 
     return (
         <>
-            <div className = "movie_wrapper">
+            <div className = "movie-wrapper">
                 <Link to="/">
-                    <button type="button" className="btn btn-info">Back to Search</button>
+                    <button type="button" className="btn">Back to Search</button>
                 </Link>
                 <div className = "movie_title">{title}</div>  
                 <img className = "movie_poster" src = {poster} alt = {title}></img>
-                <div className = "movie_year">{year}</div>  
-                <div className = "movie_type">{type}</div>  
-                <div className = "movie_released">{released}</div>  
-                <div className = "movie_genre">{genre}</div>  
-                <div className = "movie_rating">{rating}</div>  
-
+                <div className = "info_wrapper">
+                    <div className = "movie_year">{year}</div>  
+                    <div className = "movie_type">{type}</div>  
+                    <div className = "movie_released">{released}</div>  
+                    <div className = "movie_genre">{genre}</div>  
+                    {rating?.map(rate => <div key = {rate.Source}> {rate.Value} on {rate.Source} </div>)}
+                </div>
             </div>
 
         </>
