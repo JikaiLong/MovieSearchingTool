@@ -1,9 +1,6 @@
 import {React, useState} from 'react'
 import Movie from './Movie'
-import DetailPage from './DetailPage'
-import {
-    Route,
-  } from "react-router-dom";
+
 
 function SearchPage() {
 
@@ -97,7 +94,7 @@ function SearchPage() {
             </form>
             <button onClick ={() => search()}>Search</button>
             {data?.map(movie => <Movie id = {movie.imdbID} key = {movie.imdbID} title = {movie.Title} poster = {movie.Poster} type = {movie.Type} year = {movie.Year} />)}
-            {data?.map(movie => <Route key = {movie.imdbID} path={`/${movie.imdbID}`} component={DetailPage} />)}
+
         </>
     )
 }
